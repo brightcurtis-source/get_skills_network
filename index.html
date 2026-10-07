@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Get Skills Network Career Explorer: find out whether Data Analyst, Cloud Engineer or Data Engineer fits you.">
+<title>Career Explorer | Get Skills Network</title>
+<style>
+:root{--ink:#0f1b2d;--muted:#5b6b7f;--teal:#0e7c86;--teal-d:#0a5d65;--amber:#f2a93b;--bg:#f6f5f1;--card:#fff;--line:#dcdad2;--soft:#e8f3f3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;line-height:1.6}
+button{font:inherit;cursor:pointer}
+header,main,footer{max-width:1100px;margin:0 auto;padding-left:24px;padding-right:24px}
+header{display:flex;justify-content:space-between;align-items:center;padding-top:20px;padding-bottom:20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em}
+.mark{width:36px;height:36px;border-radius:10px;background:var(--ink);color:var(--amber);display:grid;place-items:center;font-weight:900}
+.hero{background:var(--ink);color:#fff;border-radius:24px;padding:clamp(28px,6vw,64px)}
+h1{margin:0;max-width:720px;font-size:clamp(2.1rem,5.5vw,4rem);line-height:1.05;letter-spacing:-.04em}
+.hero p{max-width:620px;color:#c9d4e2;font-size:1.05rem;margin:18px 0 0}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.chip{border:1px solid rgba(255,255,255,.25);border-radius:99px;padding:5px 14px;font-size:.88rem;color:#e6edf5}
+h2{font-size:clamp(1.4rem,3vw,2rem);letter-spacing:-.03em;margin:46px 0 6px}
+.sub{color:var(--muted);margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column}
+.card h3{margin:0 0 4px;font-size:1.3rem;letter-spacing:-.02em}
+.card .tag{color:var(--teal);font-weight:700;font-size:.9rem;margin-bottom:10px}
+.card p{color:var(--muted);margin:0 0 16px;font-size:.95rem}
+.card ul{margin:0 0 18px;padding-left:18px;color:var(--ink);font-size:.9rem;flex:1}
+.done{background:var(--soft);border-radius:10px;padding:8px 12px;font-size:.88rem;margin-bottom:12px;font-weight:600;color:var(--teal-d)}
+.btn{border:0;border-radius:10px;padding:12px 18px;background:var(--teal);color:#fff;font-weight:700}
+.btn:hover{background:var(--teal-d)}
+.btn.alt{background:transparent;color:var(--teal-d);border:2px solid var(--teal)}
+.btn.alt:hover{background:var(--soft)}
+button:focus-visible,input:focus-visible+span{outline:3px solid var(--amber);outline-offset:3px}
+.note{margin-top:24px;padding:16px 20px;border-left:5px solid var(--amber);background:#fff;border-radius:0 12px 12px 0;font-size:.93rem;color:#43546a}
+.panel{max-width:780px;margin:30px auto 0;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(22px,5vw,44px)}
+[hidden]{display:none!important}
+.back{background:none;border:0;color:var(--teal-d);font-weight:700;padding:0;margin-bottom:18px}
+.top{display:flex;justify-content:space-between;color:var(--muted);font-weight:600;font-size:.92rem}
+.bar{height:8px;background:#ebe9e2;border-radius:9px;overflow:hidden;margin:10px 0 26px}
+.bar>i{display:block;height:100%;background:var(--teal);width:0;transition:width .3s}
+.cat{display:inline-block;background:var(--soft);color:var(--teal-d);font-size:.82rem;font-weight:700;padding:3px 12px;border-radius:99px;margin-bottom:12px}
+.q{font-size:clamp(1.25rem,3.5vw,1.7rem);line-height:1.3;letter-spacing:-.025em;margin:0 0 22px}
+.opts{display:grid;gap:10px;margin-bottom:24px}
+.opt{position:relative;display:block}
+.opt input{position:absolute;opacity:0}
+.opt span{display:block;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer}
+.opt span:hover{border-color:var(--teal);background:#fafdfd}
+.opt input:checked+span{border-color:var(--teal);background:var(--soft);box-shadow:inset 0 0 0 1px var(--teal);font-weight:600}
+.actions{display:flex;justify-content:space-between;align-items:center}
+.link{background:none;border:0;color:var(--muted);font-weight:700;padding:10px 0}
+.link:disabled{opacity:.4;cursor:default}
+.err{color:#b3341f;font-size:.9rem;min-height:1.3em;margin:-12px 0 10px}
+.score{display:flex;align-items:baseline;gap:12px;margin:8px 0 6px}
+.score b{font-size:3.4rem;letter-spacing:-.05em;line-height:1}
+.score span{color:var(--muted)}
+.verdict{font-size:1.2rem;font-weight:700;margin:0 0 8px}
+.cats{margin:22px 0}
+.cats div{margin-bottom:12px;font-size:.92rem}
+.cats .row{display:flex;justify-content:space-between;font-weight:600}
+.cats .track{height:9px;background:#ebe9e2;border-radius:9px;overflow:hidden;margin-top:4px}
+.cats .track i{display:block;height:100%;background:var(--teal)}
+.box{background:#f4f3ee;border-radius:12px;padding:16px 18px;margin-top:14px;font-size:.95rem}
+.box strong{display:block;margin-bottom:4px}
+.box ul{margin:4px 0 0;padding-left:20px}
+.rank{margin-top:30px;background:var(--ink);color:#fff;border-radius:16px;padding:24px}
+.rank h3{margin:0 0 10px}
+.rank li{margin-bottom:6px}
+.rank .btn.alt{color:#fff;border-color:#fff;margin-top:10px}
+.rank .btn.alt:hover{background:rgba(255,255,255,.1)}
+footer{color:var(--muted);font-size:.85rem;padding-top:30px;padding-bottom:30px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="mark" aria-hidden="true">G</span>Get Skills Network</div>
+  <span style="color:var(--muted);font-size:.9rem">Career Explorer</span>
+</header>
+<main>
+<section id="home">
+  <div class="hero">
+    <h1>Which tech career actually fits you?</h1>
+    <p>Three assessments, twelve scenario-based questions each. They cover what interests you, how you think, how you like to work, and what the job is really like day to day. Take one or all three and compare.</p>
+    <div class="meta"><span class="chip">3 career paths</span><span class="chip">12 questions each</span><span class="chip">About 5 minutes per path</span></div>
+  </div>
+
+  <h2>Choose a path to test</h2>
+  <p class="sub">Answer honestly. The goal is a useful result, not a high score.</p>
+  <div class="grid" id="cards"></div>
+  <div id="compare"></div>
+  <div class="note"><strong>A guide, not a verdict.</strong> Results show how you feel about the work today. Use them to decide what to try next, such as a free lesson or a small project, before committing.</div>
+</section>
+
+<section id="quiz" class="panel" hidden>
+  <button class="back" onclick="goHome()">← All careers</button>
+  <div class="top"><span id="qRole"></span><span id="qCount"></span></div>
+  <div class="bar" role="progressbar" aria-label="Quiz progress"><i id="fill"></i></div>
+  <span class="cat" id="qCat"></span>
+  <h2 class="q" id="qText" style="margin-top:0"></h2>
+  <div class="opts" id="opts"></div>
+  <div class="err" id="err" role="alert"></div>
+  <div class="actions">
+    <button class="link" id="prev" onclick="prevQ()">← Previous</button>
+    <button class="btn" id="next" onclick="nextQ()">Next</button>
+  </div>
+</section>
+
+<section id="result" class="panel" hidden>
+  <button class="back" onclick="goHome()">← All careers</button>
+  <p style="color:var(--teal-d);font-weight:700;margin:0">Your result</p>
+  <h2 class="q" id="rTitle" style="margin:4px 0 0"></h2>
+  <div class="score"><b id="rPct"></b><span id="rRaw"></span></div>
+  <p class="verdict" id="rVerdict"></p>
+  <p id="rMsg" style="margin:0"></p>
+  <div class="cats" id="rCats"></div>
+  <div class="box"><strong>What you would do day to day</strong><span id="rDay"></span></div>
+  <div class="box"><strong>Skills and tools to start with</strong><ul id="rSkills"></ul></div>
+  <div class="box"><strong>Things to be ready for</strong><span id="rWatch"></span></div>
+  <div class="box"><strong>Your next step this week</strong><span id="rNext"></span></div>
+  <p style="margin:24px 0 0;display:flex;gap:10px;flex-wrap:wrap">
+    <button class="btn" onclick="goHome()">Test another career</button>
+    <button class="btn alt" id="retake">Retake this test</button>
+  </p>
+</section>
+</main>
+<footer>© <span id="yr"></span> Get Skills Network. Explore at your own pace.</footer>
+
+<script>
+const CATS={I:"Interest",A:"Aptitude",W:"Work style",D:"Day-to-day reality"};
+const CHOICES=[["Strongly agree",3],["Agree",2],["Not sure",1],["Disagree",0]];
+const CAREERS={
+"Data Analyst":{
+ tag:"Turn data into decisions",
+ blurb:"Find patterns in data and explain them clearly so teams can act.",
+ points:["Spreadsheets, SQL, dashboards","Strong communication","Curiosity and attention to detail"],
+ day:"Pull data from databases and spreadsheets, clean it, answer business questions, build dashboards and reports, and present findings to managers and teams.",
+ skills:["Excel or Google Sheets (formulas, pivot tables)","SQL for querying databases","Power BI or Tableau for dashboards","Basic statistics, then Python or R later"],
+ watch:"A lot of time goes into cleaning messy data, and you will sometimes have to deliver findings people don't want to hear.",
+ next:"Pick a free public dataset (for example, local weather or football results), ask one question about it, answer it with a chart in a spreadsheet, and write three sentences explaining what you found.",
+ q:[
+ ["I","A store's sales dropped 20% last month. You would enjoy digging through the numbers to find out why."],
+ ["I","You would enjoy turning a messy spreadsheet into a chart that makes the answer obvious at a glance."],
+ ["I","Questions like \"Which customers are most likely to stop buying?\" make you curious rather than bored."],
+ ["A","You are comfortable with percentages, averages and comparisons, such as working out which of two offers is really cheaper."],
+ ["A","When two sets of figures don't match, you would keep checking until you find where the difference comes from."],
+ ["A","You enjoy learning tools step by step, such as Excel formulas, SQL or dashboard software."],
+ ["W","You like explaining findings to non-technical people using plain words and simple visuals."],
+ ["W","You would be comfortable telling a manager that the data does not support their favourite idea."],
+ ["W","You would avoid drawing a conclusion the evidence doesn't support, even when someone wants a quick answer."],
+ ["D","You would be fine spending much of your day in spreadsheets, SQL queries and dashboards."],
+ ["D","You would accept cleaning and fixing messy data before the interesting discoveries begin."],
+ ["D","You like that your work guides decisions made by others, even when you don't make the final call."]]},
+"Cloud Engineer":{
+ tag:"Keep the internet's systems running",
+ blurb:"Build, secure and maintain the online infrastructure apps run on.",
+ points:["Servers, networks, automation","Troubleshooting under pressure","AWS, Azure or Google Cloud"],
+ day:"Set up and manage servers, networks and storage on cloud platforms, automate deployments, monitor performance and security, and fix outages with developer teams.",
+ skills:["Linux and the command line","Networking basics (IP, DNS, firewalls)","One cloud platform: AWS, Azure or Google Cloud","Scripting (Bash or Python), then Terraform and Docker"],
+ watch:"You may be on call sometimes, small configuration mistakes can have big effects, and the tools change quickly so learning never stops.",
+ next:"Create a free-tier account on one cloud platform, launch a small virtual server, connect to it, and write down what each part does in your own words.",
+ q:[
+ ["I","A website crashes at midnight. You would enjoy working out what broke and getting it back online."],
+ ["I","You are curious about what happens behind the scenes when you open an app or stream a video."],
+ ["I","Security matters to you: who can access what, and how to keep systems safe."],
+ ["A","You would enjoy learning how networks, servers and storage fit together."],
+ ["A","You would be comfortable typing commands in a terminal instead of clicking through menus."],
+ ["A","You enjoy reading technical documentation to figure out how a new tool works."],
+ ["W","You would rather write a script to automate a task than repeat it by hand every time."],
+ ["W","You stay calm when something important is broken and people are waiting for a fix."],
+ ["W","You like working with developers and other teams so their software runs smoothly."],
+ ["D","You would accept being on call sometimes, or working outside normal hours when systems need attention."],
+ ["D","You would double-check before changing settings, knowing one mistake could take a service offline."],
+ ["D","You would be happy to keep learning constantly, because AWS, Azure and Google Cloud change often."]]},
+"Data Engineer":{
+ tag:"Build the pipelines data travels through",
+ blurb:"Design the systems that collect, clean and deliver data reliably.",
+ points:["Databases, pipelines, Python and SQL","Systems thinking","Reliable, automated workflows"],
+ day:"Build and maintain data pipelines that move information from apps, forms and sensors into databases and warehouses, make sure it is accurate, and keep it fast and available for analysts.",
+ skills:["SQL and database design","Python for automation","Data pipelines and warehouses (ETL concepts)","Cloud basics, then tools like Airflow or Spark"],
+ watch:"Your best work is invisible when it works and noticed when it breaks, and much of the job is testing, fixing and monitoring.",
+ next:"Take a small CSV file, load it into a free database such as SQLite, clean it with a few SQL queries, and sketch the path the data takes from source to report.",
+ q:[
+ ["I","You would enjoy designing how data should travel from many sources, like apps, forms and sensors, into one reliable place."],
+ ["I","Building something that runs quietly in the background while everyone relies on it appeals to you."],
+ ["I","You care about information being accurate, consistent and well organised."],
+ ["A","You would enjoy learning how databases store, link and retrieve large amounts of information."],
+ ["A","You like logic puzzles and breaking big problems into ordered steps."],
+ ["A","You are willing to learn programming, usually Python and SQL, to build and automate things."],
+ ["W","When a nightly data job fails, you would trace the cause step by step instead of guessing."],
+ ["W","You prefer building tools that others use over presenting findings yourself."],
+ ["W","You would check with analysts and teams to understand exactly what data they need before building."],
+ ["D","You would be comfortable if your best work goes unnoticed because it simply works."],
+ ["D","You accept that much of the job is testing, fixing and monitoring, not only building new things."],
+ ["D","You would enjoy handling very large amounts of data, where speed and efficiency matter."]]}
+};
+const TIERS=[
+ [75,"Strong match","Most parts of this role appeal to you, in both what you would do and how it feels day to day. It is worth exploring seriously."],
+ [55,"Promising match","You like a good share of this work. Try a small hands-on project to find out which parts you enjoy most."],
+ [35,"Mixed match","Some parts appeal and others don't. Look at your weakest areas below to see whether they are deal-breakers or just unfamiliar."],
+ [0,"Weak match for now","This role does not seem to fit your current interests, and that is useful to know. Compare it with the other two paths."]];
+
+let role="",idx=0,ans=[],store={};
+try{store=JSON.parse(localStorage.getItem("gsn-career")||"{}")}catch(e){}
+const $=id=>document.getElementById(id);
+$("yr").textContent=new Date().getFullYear();
+
+function save(){try{localStorage.setItem("gsn-career",JSON.stringify(store))}catch(e){}}
+function show(id){["home","quiz","result"].forEach(s=>$(s).hidden=s!==id);window.scrollTo({top:0,behavior:"smooth"})}
+
+function renderHome(){
+ $("cards").innerHTML=Object.keys(CAREERS).map(n=>{const c=CAREERS[n],r=store[n];return `<article class="card">
+  <h3>${n}</h3><div class="tag">${c.tag}</div><p>${c.blurb}</p>
+  <ul>${c.points.map(p=>`<li>${p}</li>`).join("")}</ul>
+  ${r?`<div class="done">Last result: ${r.pct}% (${r.tier})</div>`:""}
+  <button class="btn" data-role="${n}">${r?"Retake test":"Start the test"}</button></article>`}).join("");
+ document.querySelectorAll("[data-role]").forEach(b=>b.onclick=()=>startQuiz(b.dataset.role));
+ const done=Object.keys(store).filter(n=>CAREERS[n]);
+ if(done.length<2){$("compare").innerHTML="";return}
+ const sorted=done.sort((a,b)=>store[b].pct-store[a].pct);
+ const missing=Object.keys(CAREERS).length-done.length;
+ $("compare").innerHTML=`<div class="rank"><h3>Your comparison so far</h3><ol>${sorted.map(n=>`<li><strong>${n}</strong>: ${store[n].pct}% (${store[n].tier})</li>`).join("")}</ol>
+ <p style="margin:8px 0 0;color:#c9d4e2">${store[sorted[0]].pct===store[sorted[1]].pct?"Two paths are tied, so try a small project in each to break the tie.":`${sorted[0]} is your closest match so far.`} ${missing?"Complete the remaining test for a full comparison.":""}</p>
+ <button class="btn alt" id="clr">Clear my results</button></div>`;
+ $("clr").onclick=()=>{store={};save();renderHome()};
+}
+
+function startQuiz(r){role=r;idx=0;ans=Array(CAREERS[r].q.length).fill(null);$("qRole").textContent=r;renderQ();show("quiz")}
+function renderQ(){
+ const qs=CAREERS[role].q,q=qs[idx];
+ $("qCount").textContent=`Question ${idx+1} of ${qs.length}`;
+ $("fill").style.width=((idx+1)/qs.length*100)+"%";
+ $("qCat").textContent=CATS[q[0]];
+ $("qText").textContent=q[1];
+ $("opts").innerHTML=CHOICES.map(c=>`<label class="opt"><input type="radio" name="a" value="${c[1]}" ${ans[idx]===c[1]?"checked":""}><span>${c[0]}</span></label>`).join("");
+ $("err").textContent="";
+ $("prev").disabled=idx===0;
+ $("next").textContent=idx===qs.length-1?"See my result":"Next question";
+}
+function nextQ(){
+ const c=document.querySelector('input[name="a"]:checked');
+ if(!c){$("err").textContent="Choose an answer to continue.";return}
+ ans[idx]=Number(c.value);
+ if(idx<CAREERS[role].q.length-1){idx++;renderQ()}else showResult();
+}
+function prevQ(){if(idx>0){idx--;renderQ()}}
+
+function showResult(){
+ const c=CAREERS[role],max=c.q.length*3,raw=ans.reduce((a,b)=>a+b,0),pct=Math.round(raw/max*100);
+ const t=TIERS.find(t=>pct>=t[0]);
+ store[role]={pct,tier:t[1]};save();
+ $("rTitle").textContent=role;
+ $("rPct").textContent=pct+"%";$("rRaw").textContent=`${raw} of ${max} points`;
+ $("rVerdict").textContent=t[1];$("rMsg").textContent=t[2];
+ const sums={};
+ c.q.forEach((q,i)=>{const s=sums[q[0]]=sums[q[0]]||[0,0];s[0]+=ans[i];s[1]+=3});
+ $("rCats").innerHTML=Object.keys(CATS).map(k=>{const p=Math.round(sums[k][0]/sums[k][1]*100);return `<div><div class="row"><span>${CATS[k]}</span><span>${p}%</span></div><div class="track"><i style="width:${p}%"></i></div></div>`}).join("");
+ $("rDay").textContent=c.day;
+ $("rSkills").innerHTML=c.skills.map(s=>`<li>${s}</li>`).join("");
+ $("rWatch").textContent=c.watch;$("rNext").textContent=c.next;
+ $("retake").onclick=()=>startQuiz(role);
+ show("result");
+}
+function goHome(){renderHome();show("home")}
+renderHome();
+</script>
+</body>
+</html>
